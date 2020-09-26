@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Info
+{% endblock %}
+
+{% block body %}
+<div class="container" 
+style="border:2px solid skyblue; margin-top:10px;margin-bottom:10px;background-color: whitesmoke; padding-bottom:10px; border-radius:5px;">
+        <br>
+        <div class="card" style="width: 20rem; float:left;border:1px solid gainsboro; margin:2px;">
+            <img class="card-img-top" height=400px src="http://covers.openlibrary.org/b/isbn/{{ isbn }}-L.jpg" alt="Card image cap">
+        </div>
+
+        <div class="card"  
+        style="width: 20rem; float:left;background-color: gainsboro; border:1px solid gainsboro;margin:2px;">
+            
+            <div class="card-body">
+                <h6 class="card-title">Title: {{ title }}</h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color:skyblue;">Author: {{ author }}</li>
+                <li class="list-group-item" style="background-color:skyblue;">Publication year: {{ year }}</li>
+                <li class="list-group-item" style="background-color:skyblue;">ISBN: {{ isbn }}</li>
+            </ul>
+        </div>
+
+        <div class="card" 
+        style="width: 20rem; float:left;background-color: gainsboro; border:1px solid gainsboro;margin:2px">
+            <div class="card-body">
+                <h6 class="card-title"> Ratings </h6>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="background-color:skyblue;">{{ avgRating }}/5 Stars</li>
+                <li class="list-group-item" style="background-color:skyblue;">{{ ratingNum }} Users Rated</li>
+            </ul>
+        </div>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <hr>
+
+        <div class="review">
+            <h4> Reviews </h4>
+            <div class="row">
+                {% if reviews %}
+                    {% for username, review in reviews.items() %}
+                        <div class="card" style="width: 18rem; margin-left:10px;" class="col">
+                            <div class="card-body" style="background-color:skyblue;">
+                                <p class="card-text">{{ review }}</p>
+                                <h6 class="card-subtitle mb-2 text-muted">- {{ username }}</h6>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <br>
+            </div>
+
+            {% if not reviews %}
+                <h6>No Reviews</h6>
+                <br>
+            {% endif %}
+        </div>
+
+        <br> 
+        <hr>
+        <h4> Leave a Review </h4>
+        <br>
+
+        <form action={{ url_for( 'info', isbn=isbn, title=title, author=author, year=year ) }} method="post">
+            <div class="form-group">
+                <select class="custom-select" name="rating" style="width: 20rem;margin:2px;">
+                      <option selected>Ratings</option>
+                      <option value="1">1 (Poor)</option>
+                      <option value="2">2 (Below Average)</option>
+                      <option value="3">3 (Average)</option>
+                      <option value="4">4 (Great)</option>
+                      <option value="5">5 (Excellent)</option>
+                </select>
+                <textarea maxlength="500" class="form-control" name="review" id="exampleFormControlTextarea1" rows="3" placeholder="Optional Description (500 characters max)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </form>
+        <hr>
+        <form action="https://www.amazon.in/s?k={{title}}" target="_blank"method="post">
+        <button type="submit" class="btn btn-primary"> Buy this book </button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    search
+{% endblock %}
+
+{% block body %}
+<div id="login" style="background-color:gainsboro;">
+<form id="login-form" class="form" action={{ url_for( 'logout') }} method="get">
+        <div class="form-group " style="margin-top:10px; margin-left:10px;">
+        <button type="submit" class="btn btn-info btn-md">Logout as {{username}}</button>
+        &nbsp &nbsp{{msgx}}
+        </div>
+</form>
+        <h4 class="text-center pt-5">Search from our book collection :</h4>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action={{ url_for( 'search') }} method="post">
+                            <div class="form-group ">
+                            <input type="text" class="form-control" name="search" placeholder="Search for Title or Author">
+                            <br>
+                            <center>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="search">
+                            </center>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <meta name="google-signin-client_id" content="831167275441-s1fsc778upl5ngg2orqj541u2ihikdiv.apps.googleusercontent.com">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styler.css') }}">
+    </head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href={{ url_for( 'index') }}>
+          <img height=100px src="../static/x.png" alt="">
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href={{ url_for( 'index') }}><b style="color:deepskyblue;">Home</b>
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{ url_for( 'login') }}><b style="color:deepskyblue;">Login</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{ url_for( 'suggestion') }}><b style="color:deepskyblue;">Suggessions</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={{ url_for( 'search') }}><b style="color:deepskyblue;">Search</b></a>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+    <body  style="background-color:gainsboro;">
+        {% block body %} {% endblock %}
+    </body>
+</html>

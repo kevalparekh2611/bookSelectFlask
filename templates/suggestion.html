@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    genre suggestion
+{% endblock %}
+
+{% block body %}
+<div id="login" style="background-color:gainsboro;">
+<form id="login-form" class="form" action={{ url_for( 'logout') }} method="get">
+        <div class="form-group " style="margin-top:10px; margin-left:10px;">
+        <button type="submit" class="btn btn-info btn-md">Logout as {{username}}</button>
+        &nbsp &nbsp{{msgx}}
+        </div>
+</form>
+        <h4 class="text-center pt-5">Enter a book that you liked</h4>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action={{ url_for( 'suggestion') }} method="post">
+                            <div class="form-group ">
+                            <input type="text" class="form-control" name="suggestion" placeholder="Enter a book to check genre">
+                            <br>
+                            <center>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Check for Genre">
+                            </center>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <br>
+
+        <div class="col-5">
+            {% if olist == []%}
+                <h4> No result found : check for spelling mistakes</h4>
+            {% endif %}
+        </div>
+
+        <ol>
+            {% for row in olist %}
+            <br>
+                <li>
+                    <h4>
+                    {{row}}
+                    </h4>
+                </li>
+            {% endfor %}
+        </ol>
+        
+        <h4> Suggestion scheme is still improving to give accurate results ... </h4>
+    </div>
+{% endblock %}
