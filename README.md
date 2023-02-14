@@ -3,6 +3,6 @@ A book rating, review, and selection web application made with Flask and postgre
 
 install python 3.6
 run commands
-> pip install pipenv
-> pip sync 
+> pip install pipenv \n
+> pip sync \n
 > flask run
